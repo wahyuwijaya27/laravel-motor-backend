@@ -103,8 +103,24 @@ class MotorController extends Controller
 
     public function getRecommendedMotors()
     {
-        $motors = Motor::where('is_recommended', 1)->get(); // Menggunakan 1 untuk true
-        dd($motors); // Untuk melihat hasilnya sebelum mengembalikannya
+        
+        $motors = Motor::where('is_recommended', '1')->get();
+
+        // Modifikasi URL gambar menjadi URL publik
+        foreach ($motors as $motor) {
+            if ($motor->image) {
+                $motor->image = asset('storage/' . $motor->image);
+            }
+        
+        }
+
+        $motors = $motors->map(function($motor) {
+            $motor->price = "Rp" . number_format($motor->price, 0, ",", ".");
+
+            return $motor;
+        });
+
         return response()->json($motors);
     }
+
 }

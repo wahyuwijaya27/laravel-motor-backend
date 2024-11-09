@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Api\CheckoutController;
+
 
 // Route untuk dashboard
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -32,15 +34,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('admin/users/{id}', [AdminController::class, 'updateUser'])->name('users.update');
     Route::delete('admin/users/{id}', [AdminController::class, 'destroyUser'])->name('users.destroy');
     
-    Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
 });
+
+// routes/web.php
+Route::get('/admin/checkouts', [CheckoutController::class, 'showCheckouts'])->name('admin.checkouts');
 
 // Redirect ke halaman login admin jika pengguna mencoba mengakses route 'login' utama
 Route::get('login', function() {
     return redirect()->route('admin.login');
 })->name('login');
 
+
+
 // Rute default untuk halaman utama
 Route::get('dashboard', function () {
     return view('welcome');
 });
+

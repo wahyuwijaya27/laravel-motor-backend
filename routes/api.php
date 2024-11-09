@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\MotorController; 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\CheckoutController;
 
 // Rute untuk otentikasi
 Route::post('register', [AuthController::class, 'register']);
@@ -20,10 +21,14 @@ Route::middleware('auth:sanctum')->group(function() {
 Route::apiResource('motors', MotorController::class);
 
 // Rute untuk rekomendasi motor
-Route::middleware('auth:sanctum')->get('/motors/recommended', [MotorController::class, 'getRecommendedMotors']);
+Route::get('/motor/recommended', [MotorController::class, 'getRecommendedMotors']);
 
 // Rute untuk admin (misalnya)
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     // Tambahkan rute lainnya di sini
 });
+
+// Route::post('/checkout', [CheckoutController::class, 'store']);
+// Route::get('/checkouts', [CheckoutController::class, 'index']);
+Route::post('/checkout', [CheckoutController::class, 'store']);

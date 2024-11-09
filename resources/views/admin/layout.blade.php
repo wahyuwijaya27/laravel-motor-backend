@@ -59,7 +59,13 @@
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>Manage Users</p>
                             </a>
-                        </li>                      
+                        </li>   
+                        <li class="nav-item">
+                            <a href="{{ route('admin.checkouts') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Manage Checkout</p>
+                            </a>
+                        </li>                   
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
