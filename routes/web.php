@@ -38,6 +38,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 // routes/web.php
 Route::get('/admin/checkouts', [CheckoutController::class, 'showCheckouts'])->name('admin.checkouts');
+Route::get('checkouts', [CheckoutController::class, 'showCheckouts']);
+
 
 // Redirect ke halaman login admin jika pengguna mencoba mengakses route 'login' utama
 Route::get('login', function() {

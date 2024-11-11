@@ -15,6 +15,8 @@ Route::middleware('auth:sanctum')->post('update', [AuthController::class, 'updat
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('profile', [AuthController::class, 'profile']);
+    Route::get('/checkouts', [CheckoutController::class, 'getRiwayat']);
+    Route::post('/checkout', [CheckoutController::class, 'store']);
 });
 
 // Rute untuk Motor
@@ -23,13 +25,12 @@ Route::apiResource('motors', MotorController::class);
 // Rute untuk rekomendasi motor
 Route::get('/motor/recommended', [MotorController::class, 'getRecommendedMotors']);
 
-// Rute untuk admin (misalnya)
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    // Tambahkan rute lainnya di sini
-});
+// // Rute untuk admin (misalnya)
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+//     // Tambahkan rute lainnya di sini
+// });
 
-// Route::post('/checkout', [CheckoutController::class, 'store']);
-// Route::get('/checkouts', [CheckoutController::class, 'index']);
-Route::post('/checkout', [CheckoutController::class, 'store']);
+
+
 

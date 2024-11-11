@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>User ID</th> <!-- Kolom User ID baru -->
                 <th>Nama Lengkap</th>
                 <th>Alamat Lengkap</th>
                 <th>Nomor Telepon</th>
@@ -21,6 +22,7 @@
             @foreach($checkouts as $index => $checkout)
             <tr>
                 <td>{{ $index + 1 }}</td>
+                <td>{{ $checkout->user->id ?? '-' }}</td> <!-- Menampilkan User ID -->
                 <td>{{ $checkout->nama_lengkap }}</td>
                 <td>{{ $checkout->alamat_lengkap }}</td>
                 <td>{{ $checkout->nomor_telepon }}</td>

@@ -10,6 +10,7 @@ class Checkout extends Model
     use HasFactory;
 
     protected $fillable = [
+        'users_id',
         'nama_lengkap', 
         'alamat_lengkap', 
         'nomor_telepon', 
@@ -21,4 +22,10 @@ class Checkout extends Model
     {
         return $this->belongsTo(Motor::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
+
 }
