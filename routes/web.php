@@ -44,8 +44,6 @@ Route::get('login', function() {
     return redirect()->route('admin.login');
 })->name('login');
 
-
-
 // Rute default untuk halaman utama
 Route::get('dashboard', function () {
     return view('welcome');

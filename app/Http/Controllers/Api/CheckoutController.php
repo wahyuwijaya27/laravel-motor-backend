@@ -11,13 +11,12 @@ class CheckoutController extends Controller
 {
     public function store(Request $request)
     {
-        // Validasi input dari aplikasi Android
         $validatedData = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'alamat_lengkap' => 'required|string',
             'nomor_telepon' => 'required|string|max:15',
-            'motor_id' => 'required|exists:motors,id', // pastikan motor yang dibeli ada di database
-            'bukti_transaksi' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // gambar bukti pembayaran
+            'motor_id' => 'required|exists:motors,id',
+            'bukti_transaksi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Simpan gambar bukti transaksi jika ada
@@ -31,6 +30,7 @@ class CheckoutController extends Controller
 
         return response()->json($checkout, 201);
     }
+
 
     public function showCheckouts()
     {

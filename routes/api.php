@@ -32,3 +32,4 @@ Route::middleware(['auth'])->group(function () {
 // Route::post('/checkout', [CheckoutController::class, 'store']);
 // Route::get('/checkouts', [CheckoutController::class, 'index']);
 Route::post('/checkout', [CheckoutController::class, 'store']);
+
