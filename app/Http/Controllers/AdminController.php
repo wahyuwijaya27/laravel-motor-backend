@@ -62,7 +62,7 @@ class AdminController extends Controller
             $validatedData['image'] = $path;
         }
         
-        Motor::create($validatedData);
+        Motor::create(array_merge($validatedData, ['is_recommended' => 1]));
         
         return redirect()->route('admin.motor')->with('success', 'Motor berhasil ditambahkan.');
     }

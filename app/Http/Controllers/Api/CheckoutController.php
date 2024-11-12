@@ -33,6 +33,18 @@ class CheckoutController extends Controller
         // Simpan data checkout ke database
         $checkout = Checkout::create($validatedData);
 
+        $motor = Motor::find($checkout->motor_id);
+        if(!$motor) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Motor tidak ada.'
+            ]);
+        }
+
+        $motor->update([
+            'status' => 'not_available'
+        ]);
+
         // Hapus data motor dari tabel motors
         // Motor::where('id', $validatedData['motor_id'])->delete();
 

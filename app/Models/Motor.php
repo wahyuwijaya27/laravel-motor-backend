@@ -16,5 +16,7 @@ class Motor extends Model
         'price',
         'image',
         'specification',
+        'status',
+        'is_recommended'
     ];
 }

@@ -104,7 +104,9 @@ class MotorController extends Controller
     public function getRecommendedMotors()
     {
         
-        $motors = Motor::where('is_recommended', '1')->get();
+        $motors = Motor::where('is_recommended', '1')
+        ->where('status', 'available')
+        ->get();
 
         // Modifikasi URL gambar menjadi URL publik
         foreach ($motors as $motor) {
