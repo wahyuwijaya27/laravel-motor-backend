@@ -14,7 +14,7 @@
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="form-group">
-            <label for="brand">Merk</label>
+            <label for="brand">Jenis Motor</label>
             <input type="text" class="form-control" id="brand" name="brand" required>
         </div>
         <div class="form-group">

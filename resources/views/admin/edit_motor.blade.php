@@ -20,7 +20,7 @@
         <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $motor->name) }}" required>
     </div>
     <div class="form-group">
-        <label for="brand">Merk Motor:</label>
+        <label for="brand">Jenis Motor:</label>
         <input type="text" name="brand" id="brand" class="form-control" value="{{ old('brand', $motor->brand) }}" required>
     </div>
     <div class="form-group">

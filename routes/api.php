@@ -25,6 +25,9 @@ Route::apiResource('motors', MotorController::class);
 // Rute untuk rekomendasi motor
 Route::get('/motor/recommended', [MotorController::class, 'getRecommendedMotors']);
 
+
+Route::middleware('auth:sanctum')->post('/checkout/upload-bukti/{id}', [CheckoutController::class, 'uploadBuktiTransaksi']);
+
 // // Rute untuk admin (misalnya)
 // Route::middleware(['auth'])->group(function () {
 //     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');

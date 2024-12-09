@@ -18,17 +18,17 @@ class CheckoutController extends Controller
             'alamat_lengkap' => 'required|string',
             'nomor_telepon' => 'required|string|max:15',
             'motor_id' => 'required|exists:motors,id',
-            'bukti_transaksi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'bukti_transaksi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Tambahkan `users_id` dari user yang sedang login
         $validatedData['users_id'] = Auth::id(); // Pastikan user sudah login
 
-        // Simpan gambar bukti transaksi jika ada
-        if ($request->hasFile('bukti_transaksi')) {
-            $path = $request->file('bukti_transaksi')->store('images/bukti_transaksi', 'public');
-            $validatedData['bukti_transaksi'] = $path;
-        }
+        // // Simpan gambar bukti transaksi jika ada
+        // if ($request->hasFile('bukti_transaksi')) {
+        //     $path = $request->file('bukti_transaksi')->store('images/bukti_transaksi', 'public');
+        //     $validatedData['bukti_transaksi'] = $path;
+        // }
 
         // Simpan data checkout ke database
         $checkout = Checkout::create($validatedData);
@@ -89,5 +89,35 @@ class CheckoutController extends Controller
         // Mengembalikan data dalam format JSON
         return response()->json($checkoutData);
     }
+
+    public function uploadBuktiTransaksi(Request $request, $id)
+    {
+        $request->validate([
+            'bukti_transaksi' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // Simpan file ke storage
+        if ($request->hasFile('bukti_transaksi')) {
+            $path = $request->file('bukti_transaksi')->store('bukti_transaksi', 'public');
+
+            // Update database atau lakukan logika lain
+            $checkoutData = Checkout::find($id);
+            $checkoutData->bukti_transaksi = $path;
+            $checkoutData->save();
+            
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Bukti transaksi berhasil diunggah',
+                'file_path' => $path,
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Gagal mengunggah bukti transaksi',
+        ], 400);
+    }
+
+
 
 }
