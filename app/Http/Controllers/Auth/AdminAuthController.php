@@ -39,7 +39,7 @@ class AdminAuthController extends Controller
 
     public function showRegisterForm()
     {
-        return view('auth.admin_register'); // Pastikan view ini menggunakan Admin LTE
+        return view('auth.admin_register'); 
     }
 
     public function register(Request $request)
@@ -63,12 +63,6 @@ class AdminAuthController extends Controller
 
         return redirect()->route('admin.login')->with('success', 'Akun berhasil dibuat! Silakan login.');
     }
-
-    // public function logout()
-    // {
-    //     Auth::logout();
-    //     return redirect()->route('admin.login');
-    // }
 
     public function logout(Request $request)
     {

@@ -11,7 +11,7 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row">
+    <div class="row justify-content-center">
         <!-- Card Total Motors -->
         <div class="col-md-4">
             <div class="card bg-primary text-white shadow">
@@ -22,7 +22,6 @@
             </div>
         </div>
         
-
         <!-- Card Total Users -->
         <div class="col-md-4">
             <div class="card bg-success text-white shadow">
@@ -32,49 +31,43 @@
                 </div>
             </div>
         </div>
-        
+    </div>
 
-        <!-- Card Pending Orders -->
-        <div class="col-md-4">
-            <div class="card bg-warning text-white shadow">
+    <!-- Announcements -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5>Announcements</h5>
+                </div>
                 <div class="card-body">
-                    <h5>Pending Orders</h5>
-                    <p class="card-text">10</p> <!-- contoh data jumlah order yang pending -->
+                    <ul>
+                        <li>Maintenance server akan dilakukan pada tanggal 25 Desember 2024.</li>
+                        <li>Penambahan fitur upload bukti pembayaran telah selesai.</li>
+                        <li>Jangan lupa untuk memeriksa data checkout secara berkala.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Recent Activity Table -->
-    <div class="card mt-4">
-        <div class="card-header bg-dark text-white">
-            Recent Activity
-        </div>
-        <div class="card-body">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>User</th>
-                        <th>Action</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($recentActivities as $index => $activity)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $activity->user->name }}</td> <!-- Menampilkan nama user -->
-                            <td>{{ $activity->action }}</td> <!-- Menampilkan deskripsi aksi -->
-                            <td>{{ $activity->created_at->format('Y-m-d') }}</td> <!-- Menampilkan tanggal aktivitas -->
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <!-- Tips and Guides -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5>Tips for Managing the System</h5>
+                </div>
+                <div class="card-body">
+                    <p>- Selalu periksa daftar pengguna baru untuk validasi.</p>
+                    <p>- Pastikan semua checkout memiliki bukti pembayaran.</p>
+                    <p>- Gunakan menu 'Manage Motors' untuk memperbarui daftar kendaraan.</p>
+                </div>
+            </div>
         </div>
     </div>
-    
 
+    <!-- Logout Button -->
     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
         @csrf
     </form>
@@ -85,5 +78,3 @@
 
 </div>
 @endsection
-
-

@@ -9,7 +9,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="#"><b>Admin</b>LTE</a>
+            <a href="#"><b>Admin</b>Motor</a>
         </div>
         <div class="card">
             <div class="card-body register-card-body">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                         </div>
                     </div>
                 </form>

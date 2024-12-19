@@ -18,17 +18,10 @@ class CheckoutController extends Controller
             'alamat_lengkap' => 'required|string',
             'nomor_telepon' => 'required|string|max:15',
             'motor_id' => 'required|exists:motors,id',
-            // 'bukti_transaksi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Tambahkan `users_id` dari user yang sedang login
         $validatedData['users_id'] = Auth::id(); // Pastikan user sudah login
-
-        // // Simpan gambar bukti transaksi jika ada
-        // if ($request->hasFile('bukti_transaksi')) {
-        //     $path = $request->file('bukti_transaksi')->store('images/bukti_transaksi', 'public');
-        //     $validatedData['bukti_transaksi'] = $path;
-        // }
 
         // Simpan data checkout ke database
         $checkout = Checkout::create($validatedData);
@@ -44,9 +37,6 @@ class CheckoutController extends Controller
         $motor->update([
             'status' => 'not_available'
         ]);
-
-        // Hapus data motor dari tabel motors
-        // Motor::where('id', $validatedData['motor_id'])->delete();
 
         return response()->json($checkout, 201);
     }
@@ -117,7 +107,4 @@ class CheckoutController extends Controller
             'message' => 'Gagal mengunggah bukti transaksi',
         ], 400);
     }
-
-
-
 }

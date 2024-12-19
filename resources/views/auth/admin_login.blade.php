@@ -9,7 +9,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Admin</b>LTE</a>
+            <a href="#"><b>Admin</b>Motor</a>
         </div>
         <div class="card">
             <div class="card-body login-card-body">
@@ -32,21 +32,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-center align-items-center mt-100">
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                         </div>
-                    </div>
+                    </div>                    
                 </form>
-                <!-- Tambahkan link untuk menuju halaman register -->
+                <!-- Link untuk menuju halaman register -->
                 <div class="text-center mt-3">
                     <a href="{{ route('admin.register') }}">Belum punya akun? Daftar di sini</a>
                 </div>
