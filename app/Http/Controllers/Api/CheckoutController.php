@@ -20,23 +20,26 @@ class CheckoutController extends Controller
             'motor_id' => 'required|exists:motors,id',
         ]);
 
-        // Tambahkan `users_id` dari user yang sedang login
-        $validatedData['users_id'] = Auth::id(); // Pastikan user sudah login
-
-        // Simpan data checkout ke database
-        $checkout = Checkout::create($validatedData);
-
-        $motor = Motor::find($checkout->motor_id);
-        if(!$motor) {
+        $motor = Motor::find($request->motor_id);
+        
+        if($motor->status == 'not_available') {
             return response()->json([
                 'error' => true,
                 'message' => 'Motor tidak ada.'
             ]);
         }
 
-        $motor->update([
-            'status' => 'not_available'
-        ]);
+        // Tambahkan `users_id` dari user yang sedang login
+        $validatedData['users_id'] = Auth::id(); // Pastikan user sudah login
+
+        // Simpan data checkout ke database
+        $checkout = Checkout::create($validatedData);
+
+        
+
+        // $motor->update([
+        //     'status' => 'not_available'
+        // ]);
 
         return response()->json($checkout, 201);
     }
@@ -94,6 +97,18 @@ class CheckoutController extends Controller
             $checkoutData = Checkout::find($id);
             $checkoutData->bukti_transaksi = $path;
             $checkoutData->save();
+
+            $motor = Motor::find($checkoutData->motor_id);
+            if(!$motor) {
+                return response()->json([
+                    'error' => true,
+                    'message' => 'Motor tidak ada.'
+                ]);
+            }
+    
+            $motor->update([
+                'status' => 'not_available'
+            ]);
             
             return response()->json([
                 'status' => 'success',
