@@ -35,12 +35,6 @@ class CheckoutController extends Controller
         // Simpan data checkout ke database
         $checkout = Checkout::create($validatedData);
 
-        
-
-        // $motor->update([
-        //     'status' => 'not_available'
-        // ]);
-
         return response()->json($checkout, 201);
     }
 
@@ -59,7 +53,9 @@ class CheckoutController extends Controller
 
     public function showCheckouts()
     {
-        $checkouts = Checkout::with(['motor', 'user'])->orderBy('created_at', 'desc')->get();
+        $checkouts = Checkout::with(['motor', 'user'])
+        ->where('bukti_transaksi', '!=', null)
+        ->orderBy('created_at', 'desc')->get();
         
         return view('admin.checkouts.manage_checkout', compact('checkouts'));
     }

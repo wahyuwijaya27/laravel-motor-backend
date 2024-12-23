@@ -19,4 +19,10 @@ class Motor extends Model
         'status',
         'is_recommended'
     ];
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\MotorController; 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\CheckoutController;
+use App\Http\Controllers\CartController;
+
 
 // Rute untuk otentikasi
 Route::post('register', [AuthController::class, 'register']);
@@ -27,6 +29,12 @@ Route::get('/motor/recommended', [MotorController::class, 'getRecommendedMotors'
 
 
 Route::middleware('auth:sanctum')->post('/checkout/upload-bukti/{id}', [CheckoutController::class, 'uploadBuktiTransaksi']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/carts', [CartController::class, 'index']);
+    Route::post('/carts', [CartController::class, 'store']);
+    Route::delete('/carts/{id}', [CartController::class, 'destroy']);
+});
 
 // // Rute untuk admin (misalnya)
 // Route::middleware(['auth'])->group(function () {
