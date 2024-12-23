@@ -115,33 +115,33 @@ class AdminController extends Controller
         return redirect()->route('admin.motor')->with('success', 'Motor berhasil dihapus.');
     }
 
-    // Fungsi untuk menampilkan form edit pengguna
-    public function editUser($id)
-    {
-        $user = User::findOrFail($id);
-        return view('admin.edit_user', compact('user'));
-    }
+    // // Fungsi untuk menampilkan form edit pengguna
+    // public function editUser($id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     return view('admin.edit_user', compact('user'));
+    // }
 
-    // Fungsi untuk memperbarui data pengguna
-    public function updateUser(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
-        ]);
+    // // Fungsi untuk memperbarui data pengguna
+    // public function updateUser(Request $request, $id)
+    // {
+    //     $validatedData = $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|email|unique:users,email,' . $id,
+    //     ]);
 
-        $user = User::findOrFail($id);
-        $user->update($validatedData);
+    //     $user = User::findOrFail($id);
+    //     $user->update($validatedData);
 
-        return redirect()->route('admin.users')->with('success', 'User berhasil diperbarui.');
-    }
+    //     return redirect()->route('admin.users')->with('success', 'User berhasil diperbarui.');
+    // }
 
-    // Fungsi untuk menghapus pengguna
-    public function destroyUser($id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
+    // // Fungsi untuk menghapus pengguna
+    // public function destroyUser($id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     $user->delete();
 
-        return redirect()->route('admin.users')->with('success', 'User berhasil dihapus.');
-    }
+    //     return redirect()->route('admin.users')->with('success', 'User berhasil dihapus.');
+    // }
 }

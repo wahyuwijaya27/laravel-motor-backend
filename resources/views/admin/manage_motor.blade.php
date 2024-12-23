@@ -12,7 +12,14 @@
     </div>
     <div class="form-group">
         <label for="brand">Jenis Motor:</label>
-        <input type="text" name="brand" id="brand" class="form-control" required>
+        <select name="brand" id="brand" class="form-control" required>
+            <option value="Matic">Matic</option>
+            <option value="Bebek">Bebek</option>
+            <option value="Sport">Sport</option>
+            <option value="Trail">Trail</option>
+            <option value="Classic">Classic</option>
+            <option value="Moge">Moge</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="year">Tahun:</label>
@@ -59,7 +66,6 @@
                 <td>{{ $motor->year }}</td>
                 <td>{{ number_format($motor->price, 0, ',', '.') }}</td>
                 <td>{{ \Illuminate\Support\Str::limit($motor->specification, 30, '...') }}</td>
- <!-- Menampilkan spesifikasi motor -->
                 <td>
                     @if ($motor->image)
                         <!-- Menampilkan gambar -->
