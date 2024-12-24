@@ -12,6 +12,11 @@ class CartController extends Controller
     public function index()
     {
         $carts = Cart::with('motor')->where('user_id', auth()->id())->get();
+        $carts = $carts->map(function($cart) {
+            $cart->motor->image = url('storage/' . $cart->motor->image);
+            return $cart;
+        });
+
         return response()->json($carts);
     }
 

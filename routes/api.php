@@ -8,7 +8,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\CartController;
 
-
 // Rute untuk otentikasi
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
