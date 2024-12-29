@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Api\CheckoutController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 // Route untuk dashboard
@@ -50,4 +51,10 @@ Route::get('login', function() {
 Route::get('dashboard', function () {
     return view('welcome');
 });
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('forgot-password.form');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendOtp'])->name('forgot-password.send-otp');
+Route::post('verify-otp', [ForgotPasswordController::class, 'verifyOtp'])->name('forgot-password.verify-otp');
+Route::get('reset-password', [ForgotPasswordController::class, 'resetPasswordForm'])->name('forgot-password.reset-form');
+Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('forgot-password.reset');
 

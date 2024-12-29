@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Daftar Admin Baru</p>
-                <form action="{{ route('admin.register.post') }}" method="POST"> <!-- Perbaikan -->
+                <form action="{{ route('admin.register.post') }}" method="POST">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="text" name="name" class="form-control" placeholder="Name" required>
@@ -29,6 +29,14 @@
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-phone"></span>
                             </div>
                         </div>
                     </div>
