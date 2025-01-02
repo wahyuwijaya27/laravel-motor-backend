@@ -15,12 +15,14 @@ class AuthController extends Controller
             'username' => 'required|string|unique:users',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed',
+            'phone' => 'required|string|unique:users', // Validasi nomor telepon
         ]);
 
         $user = new User([
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone' => $request->phone, // Menyimpan nomor telepon
             'is_admin' => 0, // Atur is_admin ke 0 untuk pengguna biasa
         ]);
 
@@ -77,6 +79,10 @@ class AuthController extends Controller
 
         if ($request->has('password')) {
             $user->password = Hash::make($request->password);
+        }
+
+        if ($request->has('phone_number')) {
+            $user->phone_number = $request->phone_number; // Update nomor telepon
         }
 
         $user->save();
