@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http; 
 
 class AdminAuthController extends Controller
 {
@@ -68,6 +70,41 @@ class AdminAuthController extends Controller
         ]);
 
         return redirect()->route('admin.login')->with('success', 'Akun berhasil dibuat! Silakan login.');
+    }
+
+    public function sendOtp(Request $request)
+    {
+        $request->validate([
+            'phone_number' => 'required|numeric',
+        ]);
+
+        $otp = rand(100000, 999999); // Generate OTP
+        Session::put('otp', $otp);
+        Session::put('phone', $request->phone_number);
+
+        // Kirim OTP via WhatsApp menggunakan Fonnt API
+        $response = $this->sendOtpToFonnt($request->phone_number, $otp);
+
+        if (isset($response['status']) && $response['status'] === true) {
+            return response()->json(['message' => 'OTP has been sent!'], 200);
+        }
+
+        return response()->json(['message' => 'Failed to send OTP.'], 500);
+    }
+
+    private function sendOtpToFonnt($phone, $otp)
+    {
+        $apiKey = "h7fkxTaeM9jprRxCHrTH";
+        $message = "Kode OTP Anda adalah: $otp";
+
+        $response = Http::withHeaders([
+            'Authorization' => $apiKey,
+        ])->timeout(30)->post('https://api.fonnte.com/send', [
+            'target' => $phone,
+            'message' => $message,
+        ]);
+
+        return $response->json();
     }
 
     public function logout(Request $request)

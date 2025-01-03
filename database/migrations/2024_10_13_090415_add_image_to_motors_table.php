@@ -8,15 +8,15 @@ class AddImageToMotorsTable extends Migration
 {
     public function up()
     {
-        Schema::table('motors', function (Blueprint $table) {
-            $table->string('image')->nullable(); // Menambahkan kolom image
-        });
+        // Schema::table('motors', function (Blueprint $table) {
+        //     $table->string('image')->nullable(); // Menambahkan kolom image
+        // });
     }
 
     public function down()
     {
-        Schema::table('motors', function (Blueprint $table) {
-            $table->dropColumn('image'); // Menghapus kolom image jika dibatalkan
-        });
+        // Schema::table('motors', function (Blueprint $table) {
+        //     $table->dropColumn('image'); // Menghapus kolom image jika dibatalkan
+        // });
     }
 }

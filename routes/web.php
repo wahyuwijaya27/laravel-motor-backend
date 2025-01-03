@@ -58,3 +58,5 @@ Route::post('verify-otp', [ForgotPasswordController::class, 'verifyOtp'])->name(
 Route::get('reset-password', [ForgotPasswordController::class, 'resetPasswordForm'])->name('forgot-password.reset-form');
 Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('forgot-password.reset');
 
+Route::post('admin/send-otp', [AdminAuthController::class, 'sendOtp'])->name('admin.sendOtp');
+
