@@ -2,11 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta username="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HALAMAN ADMIN</title>
     <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}">
     <script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('adminlte/fontawesome/css/all.min.css') }}">
+    <style>
+        /* Pastikan wrapper dan sidebar memiliki tinggi penuh */
+        html, body, .wrapper {
+            height: 100%;
+            margin: 0;
+        }
+        .main-sidebar {
+            height: 100vh; /* Tinggi penuh layar */
+            position: fixed; /* Tetap di posisi saat scroll */
+            top: 0; /* Mulai dari atas */
+            left: 0; /* Mulai dari sisi kiri */
+            z-index: 1030; /* Pastikan berada di atas elemen lain */
+        }
+        .content-wrapper {
+            margin-left: 250px; /* Sesuaikan dengan lebar sidebar */
+            min-height: 100vh; /* Pastikan konten memiliki tinggi minimal 100% */
+            overflow: auto; /* Tambahkan scroll jika konten panjang */
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -19,26 +38,6 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ asset('path/to/user/profile/image.jpg') }}" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        @if(Auth::check())
-                            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                        @else
-                            <a href="#" class="d-block">Guest</a>
-                        @endif
-                    </div>
-                </div> --}}
-                    {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="info">
-                            <a href="#" class="d-block">{{ $adminName }}</a>
-                        </div>
-                    </div> --}}
-                
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -73,6 +72,7 @@
             <!-- /.sidebar -->
         </aside>
 
+        <!-- Content Wrapper -->
         <div class="content-wrapper">
             <section class="content">
                 <div class="container-fluid">

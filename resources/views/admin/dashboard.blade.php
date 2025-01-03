@@ -1,80 +1,64 @@
 @extends('admin.layout') 
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <!-- Header Dashboard -->
-    <div class="row mb-3">
-        <div class="col-lg-12">
-            <h1 class="display-4 text-center">Dashboard</h1>
-            <p class="text-center">Selamat datang di dashboard admin!</p>
-        </div>
+    <div class="text-center mb-4">
+        <h1 class="display-4">Dashboard Admin</h1>
+        <p class="lead">Selamat datang di dashboard admin!</p>
     </div>
 
     <!-- Content Row -->
     <div class="row justify-content-center">
         <!-- Card Total Motors -->
         <div class="col-md-4">
-            <div class="card bg-primary text-white shadow">
-                <div class="card-body">
-                    <h5>Total Motors</h5>
-                    <p class="card-text">{{ $totalMotors }}</p>
+            <div class="card text-white bg-primary shadow mb-4 h-100">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-auto">
+                        <div>
+                            <h5 class="card-title">Total Motors</h5>
+                            <h3>{{ $totalMotors }}</h3>
+                        </div>
+                        <i class="bi bi-motorcycle fs-1"></i>
+                    </div>
                 </div>
             </div>
         </div>
         
         <!-- Card Total Users -->
         <div class="col-md-4">
-            <div class="card bg-success text-white shadow">
-                <div class="card-body">
-                    <h5>Total Users</h5>
-                    <p class="card-text">{{ $totalUsers }}</p>
+            <div class="card text-white bg-success shadow mb-4 h-100">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-auto">
+                        <div>
+                            <h5 class="card-title">Total Users</h5>
+                            <h3>{{ $totalUsers }}</h3>
+                        </div>
+                        <i class="bi bi-people fs-1"></i>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Announcements -->
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-info text-white">
-                    <h5>Announcements</h5>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        <li>Maintenance server akan dilakukan pada tanggal 25 Desember 2024.</li>
-                        <li>Penambahan fitur upload bukti pembayaran telah selesai.</li>
-                        <li>Jangan lupa untuk memeriksa data checkout secara berkala.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tips and Guides -->
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-secondary text-white">
-                    <h5>Tips for Managing the System</h5>
-                </div>
-                <div class="card-body">
-                    <p>- Selalu periksa daftar pengguna baru untuk validasi.</p>
-                    <p>- Pastikan semua checkout memiliki bukti pembayaran.</p>
-                    <p>- Gunakan menu 'Manage Motors' untuk memperbarui daftar kendaraan.</p>
+        <!-- Card Laporan Pendapatan -->
+        <div class="col-md-4">
+            <div class="card bg-info text-white shadow mb-4 h-100">
+                <div class="card-body text-center d-flex flex-column">
+                    <h5 class="card-title mb-3">Laporan Pendapatan</h5>
+                    <a href="{{ route('reports.index') }}" class="btn btn-light text-info fw-bold mt-auto">Lihat Laporan</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Logout Button -->
-    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-    
-    <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger">
-        Logout
-    </a>
-
+    <div class="text-center mt-4">
+        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <button class="btn btn-danger px-4" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+    </div>
 </div>
 @endsection

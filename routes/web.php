@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ReportController;
 
 
 // Route untuk dashboard
@@ -58,5 +59,8 @@ Route::post('verify-otp', [ForgotPasswordController::class, 'verifyOtp'])->name(
 Route::get('reset-password', [ForgotPasswordController::class, 'resetPasswordForm'])->name('forgot-password.reset-form');
 Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('forgot-password.reset');
 
+
 Route::post('admin/send-otp', [AdminAuthController::class, 'sendOtp'])->name('admin.sendOtp');
+
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 

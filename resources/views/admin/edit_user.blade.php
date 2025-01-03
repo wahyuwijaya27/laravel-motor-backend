@@ -1,4 +1,4 @@
-@extends('admin.layout') <!-- Pastikan ini mengarah ke layout utama admin Anda -->
+@extends('admin.layout') 
 
 @section('content')
 <div class="container">
