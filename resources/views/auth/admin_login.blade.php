@@ -38,9 +38,9 @@
                         </div>
                     </div>
                 </form>
-                <div class="text-center mt-3">
+                {{-- <div class="text-center mt-3">
                     <a href="{{ route('forgot-password.form') }}">Lupa Password?</a>
-                </div>
+                </div> --}}
                 {{-- <div class="text-center mt-3">
                     <a href="{{ route('admin.register') }}">Belum punya akun? Daftar di sini</a>
                 </div> --}}
